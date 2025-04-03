@@ -79,7 +79,7 @@ public class MongoDBConfig extends PluginConfig {
   @Name(MongoDBConstants.USE_SRV)
   @Description("Enable SRV format for connection string")
   @Nullable
-  private Boolean useSRV;
+  private boolean useSRV;
 
   @Name(MongoDBConstants.CONNECTION_ARGUMENTS)
   @Description("A list of arbitrary string key/value pairs as connection arguments.")
@@ -88,7 +88,7 @@ public class MongoDBConfig extends PluginConfig {
   private String connectionArguments;
 
   public MongoDBConfig(String referenceName, String host, int port, String database, String collection, String user,
-                       String password, Boolean useSRV, String connectionArguments) {
+                       String password, boolean useSRV, String connectionArguments) {
     this.referenceName = referenceName;
     this.host = host;
     this.port = port;
@@ -131,7 +131,7 @@ public class MongoDBConfig extends PluginConfig {
     return password;
   }
 
-  public Boolean isUseSRV() {
+  public boolean isUseSRV() {
     return useSRV;
   }
 
@@ -182,7 +182,7 @@ public class MongoDBConfig extends PluginConfig {
 
     StringBuilder connectionStringBuilder = new StringBuilder();
 
-    if (Boolean.TRUE.equals(isUseSRV())) {
+    if (isUseSRV()) {
       connectionStringBuilder.append("mongodb+srv://");
     } else {
       connectionStringBuilder.append("mongodb://");
@@ -194,7 +194,7 @@ public class MongoDBConfig extends PluginConfig {
 
     connectionStringBuilder.append(host);
 
-    if (Boolean.FALSE.equals(isUseSRV())) {
+    if (!isUseSRV()) {
       connectionStringBuilder.append(":").append(port);
     }
 
