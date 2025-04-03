@@ -64,7 +64,18 @@
         {
           "widget-type": "toggle",
           "label": "UseSRV",
-          "name": "useSRV"
+          "name": "useSRV",
+          "widget-attributes": {
+            "on": {
+              "value": "true",
+              "label": "True"
+            },
+            "off": {
+              "value": "false",
+              "label": "False"
+            },
+            "default": "false"
+          }
         },
         {
           "widget-type": "textbox",
