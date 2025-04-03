@@ -82,7 +82,7 @@ public class MongoDBConstants {
   /**
    *
    */
-  public static final String USE_SRV = "useSRV";
+  public static final String USE_SRV = "connectUsingSRVString";
 
   /**
    * Configuration property name used to specify auxiliary MongoDB connection string to authenticate against when

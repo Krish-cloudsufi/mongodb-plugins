@@ -63,8 +63,8 @@
         },
         {
           "widget-type": "toggle",
-          "label": "UseSRV",
-          "name": "useSRV",
+          "label": "Connect Using SRV String",
+          "name": "connectUsingSRVString",
           "widget-attributes": {
             "on": {
               "value": "true",
