@@ -29,6 +29,7 @@ public class MongoDBConfigBuilder<T extends MongoDBConfigBuilder> {
   protected String collection;
   protected String user;
   protected String password;
+  protected Boolean useSRV;
   protected String connectionArguments;
 
   public static MongoDBConfigBuilder builder() {
@@ -82,12 +83,18 @@ public class MongoDBConfigBuilder<T extends MongoDBConfigBuilder> {
     return (T) this;
   }
 
+  public T setUseSRV(Boolean useSRV) {
+    this.useSRV = useSRV;
+    return (T) this;
+  }
+
   public T setConnectionArguments(String connectionArguments) {
     this.connectionArguments = connectionArguments;
     return (T) this;
   }
 
   public MongoDBConfig build() {
-    return new MongoDBConfig(referenceName, host, port, database, collection, user, password, connectionArguments);
+    return new MongoDBConfig(referenceName, host, port, database, collection, user, password,
+                             useSRV, connectionArguments);
   }
 }

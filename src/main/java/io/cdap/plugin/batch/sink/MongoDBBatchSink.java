@@ -171,8 +171,8 @@ public class MongoDBBatchSink extends ReferenceBatchSink<StructuredRecord, NullW
     private String idField;
 
     public MongoDBSinkConfig(String referenceName, String host, int port, String database, String collection,
-                             String user, String password, String connectionArguments, String idField) {
-      super(referenceName, host, port, database, collection, user, password, connectionArguments);
+                             String user, String password, Boolean useSRV, String connectionArguments, String idField) {
+      super(referenceName, host, port, database, collection, user, password, useSRV, connectionArguments);
       this.idField = idField;
     }
 

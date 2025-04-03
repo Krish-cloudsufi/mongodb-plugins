@@ -190,9 +190,9 @@ public class MongoDBBatchSource extends ReferenceBatchSource<Object, BSONObject,
     private String authConnectionString;
 
     public MongoDBSourceConfig(String referenceName, String host, int port, String database, String collection,
-                               String user, String password, String connectionArguments, String schema,
+                               String user, String password, Boolean useSRV, String connectionArguments, String schema,
                                String inputQuery, String onError, String authConnectionString) {
-      super(referenceName, host, port, database, collection, user, password, connectionArguments);
+      super(referenceName, host, port, database, collection, user, password, useSRV, connectionArguments);
       this.schema = schema;
       this.inputQuery = inputQuery;
       this.onError = onError;

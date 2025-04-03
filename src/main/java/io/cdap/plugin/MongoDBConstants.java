@@ -80,6 +80,11 @@ public class MongoDBConstants {
   public static final String PASSWORD = "password";
 
   /**
+   *
+   */
+  public static final String USE_SRV = "useSRV";
+
+  /**
    * Configuration property name used to specify auxiliary MongoDB connection string to authenticate against when
    * constructing splits.
    */
