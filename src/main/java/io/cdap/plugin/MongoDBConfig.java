@@ -157,6 +157,11 @@ public class MongoDBConfig extends PluginConfig {
     if (!containsMacro(MongoDBConstants.HOST) && Strings.isNullOrEmpty(host)) {
       throw new InvalidConfigPropertyException("Host must be specified", MongoDBConstants.HOST);
     }
+    if ((!containsMacro(MongoDBConstants.USE_SRV) && !useSRV) && !containsMacro(MongoDBConstants.PORT)) {
+      if (port < 1) {
+        throw new InvalidConfigPropertyException("Port number must be greater than 0", MongoDBConstants.PORT);
+      }
+    }
     if (!containsMacro(MongoDBConstants.DATABASE) && Strings.isNullOrEmpty(database)) {
       throw new InvalidConfigPropertyException("Database name must be specified", MongoDBConstants.DATABASE);
     }
