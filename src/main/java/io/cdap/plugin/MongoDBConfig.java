@@ -172,9 +172,11 @@ public class MongoDBConfig extends PluginConfig {
 
   /**
    * Constructs a connection string such as: "mongodb://admin:password@localhost:27017/admin.analytics?key=value;"
-   * using host, port, username, password, database, collection and optional connection properties. In the case when
-   * username or password is not provided the connection string will not contain credentials:
+   * using host, port, username, password, database, collection and optional connection properties.
+   * If SRV is enabled, the connection string will use the "mongodb+srv://" protocol instead of "mongodb://".
+   * In the case when username or password is not provided, the connection string will not contain credentials:
    * "mongodb://localhost:27017/admin.analytics?key=value;"
+   * When SRV is not used, the port will be included in the connection string.
    *
    * @return connection string.
    */
