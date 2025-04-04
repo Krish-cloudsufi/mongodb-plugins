@@ -77,9 +77,10 @@ public class MongoDBConfig extends PluginConfig {
   private String password;
 
   @Name(MongoDBConstants.USE_SRV)
-  @Description("Enable SRV format for connection string")
+  @Description("Toggle to determine whether to use an SRV connection string for MongoDB. It can be " +
+    "enabled if the MongoDB deployment supports SRV DNS records for connection resolution.")
   @Nullable
-  private boolean useSRV;
+  private boolean connectUsingSRVString;
 
   @Name(MongoDBConstants.CONNECTION_ARGUMENTS)
   @Description("A list of arbitrary string key/value pairs as connection arguments.")
@@ -88,7 +89,7 @@ public class MongoDBConfig extends PluginConfig {
   private String connectionArguments;
 
   public MongoDBConfig(String referenceName, String host, int port, String database, String collection, String user,
-                       String password, boolean useSRV, String connectionArguments) {
+                       String password, boolean connectUsingSRVString, String connectionArguments) {
     this.referenceName = referenceName;
     this.host = host;
     this.port = port;
@@ -96,7 +97,7 @@ public class MongoDBConfig extends PluginConfig {
     this.collection = collection;
     this.user = user;
     this.password = password;
-    this.useSRV = useSRV;
+    this.connectUsingSRVString = connectUsingSRVString;
     this.connectionArguments = connectionArguments;
   }
 
@@ -131,8 +132,8 @@ public class MongoDBConfig extends PluginConfig {
     return password;
   }
 
-  public boolean isUseSRV() {
-    return useSRV;
+  public boolean connectUsingSRVString() {
+    return connectUsingSRVString;
   }
 
   @Nullable
@@ -157,7 +158,7 @@ public class MongoDBConfig extends PluginConfig {
     if (!containsMacro(MongoDBConstants.HOST) && Strings.isNullOrEmpty(host)) {
       throw new InvalidConfigPropertyException("Host must be specified", MongoDBConstants.HOST);
     }
-    if ((!containsMacro(MongoDBConstants.USE_SRV) && !useSRV) && !containsMacro(MongoDBConstants.PORT)) {
+    if ((!containsMacro(MongoDBConstants.USE_SRV) && !connectUsingSRVString) && !containsMacro(MongoDBConstants.PORT)) {
       if (port < 1) {
         throw new InvalidConfigPropertyException("Port number must be greater than 0", MongoDBConstants.PORT);
       }
@@ -181,34 +182,24 @@ public class MongoDBConfig extends PluginConfig {
    * @return connection string.
    */
   public String getConnectionString() {
-
     StringBuilder connectionStringBuilder = new StringBuilder();
-
-    if (isUseSRV()) {
+    if (connectUsingSRVString()) {
       connectionStringBuilder.append("mongodb+srv://");
     } else {
       connectionStringBuilder.append("mongodb://");
     }
-
     if (!Strings.isNullOrEmpty(user) || !Strings.isNullOrEmpty(password)) {
       connectionStringBuilder.append(user).append(":").append(password).append("@");
     }
-
     connectionStringBuilder.append(host);
-
-    if (!isUseSRV()) {
+    if (!connectUsingSRVString()) {
       connectionStringBuilder.append(":").append(port);
     }
-
     connectionStringBuilder.append("/").append(database).append(".").append(collection);
-
     if (!Strings.isNullOrEmpty(connectionArguments)) {
       connectionStringBuilder.append("?").append(connectionArguments);
     }
-
     return connectionStringBuilder.toString();
-
-
   }
 
   /**

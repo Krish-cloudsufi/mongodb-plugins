@@ -36,7 +36,7 @@ public class MongoDBConfigTest {
     .setCollection("analytics")
     .setUser("admin")
     .setPassword("password")
-    .setUseSRV(false)
+    .setConnectUsingSRVString(false)
     .setConnectionArguments("key=value;")
     .build();
 
@@ -49,7 +49,7 @@ public class MongoDBConfigTest {
   @Test
   public void testConfigConnectionStringWithSRV() {
     String connectionString = MongoDBConfigBuilder.builder(VALID_CONFIG)
-      .setUseSRV(true)
+      .setConnectUsingSRVString(true)
       .build()
       .getConnectionString();
 
@@ -70,7 +70,7 @@ public class MongoDBConfigTest {
   @Test
   public void testConfigConnectionStringWithSRVNoCreds() {
     String connectionString = MongoDBConfigBuilder.builder(VALID_CONFIG)
-      .setUseSRV(true)
+      .setConnectUsingSRVString(true)
       .setUser(null)
       .setPassword(null)
       .build()

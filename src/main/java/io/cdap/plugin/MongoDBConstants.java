@@ -80,7 +80,7 @@ public class MongoDBConstants {
   public static final String PASSWORD = "password";
 
   /**
-   *
+   * Configuration property name used to specify whether to use an SRV Connection string for MongoDB.
    */
   public static final String USE_SRV = "connectUsingSRVString";
 
