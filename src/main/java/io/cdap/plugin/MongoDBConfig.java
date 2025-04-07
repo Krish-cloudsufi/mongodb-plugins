@@ -76,7 +76,7 @@ public class MongoDBConfig extends PluginConfig {
   @Nullable
   private String password;
 
-  @Name(MongoDBConstants.USE_SRV)
+  @Name(MongoDBConstants.CONNECT_USING_SRV_STRING)
   @Description("Toggle to determine whether to use an SRV connection string for MongoDB. It can be " +
     "enabled if the MongoDB deployment supports SRV DNS records for connection resolution.")
   @Nullable
@@ -158,7 +158,8 @@ public class MongoDBConfig extends PluginConfig {
     if (!containsMacro(MongoDBConstants.HOST) && Strings.isNullOrEmpty(host)) {
       throw new InvalidConfigPropertyException("Host must be specified", MongoDBConstants.HOST);
     }
-    if ((!containsMacro(MongoDBConstants.USE_SRV) && !connectUsingSRVString) && !containsMacro(MongoDBConstants.PORT)) {
+    if ((!containsMacro(MongoDBConstants.CONNECT_USING_SRV_STRING) && !connectUsingSRVString) &&
+      !containsMacro(MongoDBConstants.PORT)) {
       if (port < 1) {
         throw new InvalidConfigPropertyException("Port number must be greater than 0", MongoDBConstants.PORT);
       }
