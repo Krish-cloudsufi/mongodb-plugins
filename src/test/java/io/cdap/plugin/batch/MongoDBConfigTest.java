@@ -53,7 +53,7 @@ public class MongoDBConfigTest {
       .build()
       .getConnectionString();
 
-    Assert.assertEquals("mongodb://localhost:27017/admin.analytics?key=value;", connectionString);
+    Assert.assertEquals("mongodb+srv://admin:password@localhost/admin.analytics?key=value;", connectionString);
   }
 
   @Test
