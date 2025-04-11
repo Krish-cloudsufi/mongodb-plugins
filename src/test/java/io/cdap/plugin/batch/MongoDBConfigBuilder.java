@@ -29,7 +29,7 @@ public class MongoDBConfigBuilder<T extends MongoDBConfigBuilder> {
   protected String collection;
   protected String user;
   protected String password;
-  protected Boolean connectUsingSRVString;
+  protected boolean connectUsingSRVString;
   protected String connectionArguments;
 
   public static MongoDBConfigBuilder builder() {
