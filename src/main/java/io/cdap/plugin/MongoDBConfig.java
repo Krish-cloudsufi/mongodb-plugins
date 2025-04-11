@@ -79,6 +79,7 @@ public class MongoDBConfig extends PluginConfig {
   @Name(MongoDBConstants.CONNECT_USING_SRV_STRING)
   @Description("Toggle to determine whether to use an SRV connection string for MongoDB. It can be " +
     "enabled if the MongoDB deployment supports SRV DNS records for connection resolution.")
+  @Macro
   @Nullable
   private boolean connectUsingSRVString;
 
