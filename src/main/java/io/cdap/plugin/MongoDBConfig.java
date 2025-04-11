@@ -134,9 +134,6 @@ public class MongoDBConfig extends PluginConfig {
   }
 
   public boolean connectUsingSRVString() {
-    if (containsMacro(MongoDBConstants.CONNECT_USING_SRV_STRING)) {
-      return false;
-    }
     return connectUsingSRVString;
   }
 
